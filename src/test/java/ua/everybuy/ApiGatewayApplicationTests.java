@@ -1,4 +1,4 @@
-package ua.everybuy.apigateway;
+package ua.everybuy;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
