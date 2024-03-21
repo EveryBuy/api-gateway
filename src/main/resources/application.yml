@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      httpserver:
+        wiretap: true
+      httpclient:
+        wiretap: true
+        ssl:
+          useInsecureTrustManager: true
+      routes:
+        - id: auth-service-registration
+          uri: https://service-authorization-b1jx.onrender.com
+          predicates:
+            - Path=/registration
+        - id: auth-service-login
+          uri: https://service-authorization-b1jx.onrender.com
+          predicates:
+            - Path=/auth
+        - id: user-service
+          uri: https://service-user-data.onrender.com
+          predicates:
+            - Path=/ping
+logging:
+  level:
+    reactor.netty: INFO
+    org.springframework.cloud.gateway: TRACE
