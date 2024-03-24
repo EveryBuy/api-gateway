@@ -7,6 +7,8 @@ spring:
         wiretap: true
       httpclient:
         wiretap: true
+        connect-timeout: 360000
+        response-timeout: 360000
         ssl:
           useInsecureTrustManager: true
       routes:
@@ -26,3 +28,6 @@ logging:
   level:
     reactor.netty: INFO
     org.springframework.cloud.gateway: TRACE
+
+server:
+  port: 8087
