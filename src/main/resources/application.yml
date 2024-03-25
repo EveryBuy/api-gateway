@@ -17,10 +17,13 @@ spring:
           predicates:
             - Path=/auth/**
           filters:
-            - name: RewritePath
-              args:
-                regexp: "/auth/(?<path>.*)"
-                replacement: "/${path}"
+            - RewritePath=/auth, /auth/auth
+        - id: auth-service
+          uri: https://service-authorization-b1jx.onrender.com
+          predicates:
+            - Path=/auth/**
+          filters:
+            - RewritePath=/registration, /auth/registration
         - id: user-service
           uri: https://service-user-data.onrender.com
           predicates:
