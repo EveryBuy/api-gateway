@@ -16,6 +16,11 @@ spring:
           uri: https://service-authorization-b1jx.onrender.com
           predicates:
             - Path=/auth/**
+          filters:
+            - name: RewritePath
+              args:
+                regexp: "/auth/(?<path>.*)"
+                replacement: "/${path}"
         - id: user-service
           uri: https://service-user-data.onrender.com
           predicates:
