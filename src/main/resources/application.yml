@@ -12,14 +12,11 @@ spring:
         ssl:
           useInsecureTrustManager: true
       routes:
-        - id: auth-service-registration
+        - id: auth-service
           uri: https://service-authorization-b1jx.onrender.com
           predicates:
-            - Path=/registration
-        - id: auth-service-login
-          uri: https://service-authorization-b1jx.onrender.com
-          predicates:
-            - Path=/auth
+            - Path=/auth/**
+            -
         - id: user-service
           uri: https://service-user-data.onrender.com
           predicates:
