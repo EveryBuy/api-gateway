@@ -15,13 +15,13 @@ spring:
         - id: auth-service
           uri: https://service-authorization-b1jx.onrender.com
           predicates:
-            - Path=/auth/**
+            - Path=/auth/auth
           filters:
             - RewritePath=/auth, /auth/auth
         - id: auth-service
           uri: https://service-authorization-b1jx.onrender.com
           predicates:
-            - Path=/auth/**
+            - Path=/auth/registration
           filters:
             - RewritePath=/registration, /auth/registration
         - id: user-service
