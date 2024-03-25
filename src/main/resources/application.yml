@@ -16,7 +16,6 @@ spring:
           uri: https://service-authorization-b1jx.onrender.com
           predicates:
             - Path=/auth/**
-            -
         - id: user-service
           uri: https://service-user-data.onrender.com
           predicates:
