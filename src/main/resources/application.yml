@@ -1,4 +1,6 @@
 spring:
+  main:
+    allow-bean-definition-overriding: true
   application:
     name: api-gateway
   cloud:
@@ -20,7 +22,8 @@ spring:
         - id: user-service
           uri: https://service-user-data.onrender.com
           predicates:
-            - Path=/ping
+            - Path=/user/**
+
 logging:
   level:
     reactor.netty: INFO
