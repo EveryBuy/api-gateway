@@ -24,6 +24,11 @@ spring:
           predicates:
             - Path=/user/**
 
+        - id: advertisement-service
+          uri: https://service-advertisement.onrender.com
+          predicates:
+            - Path=/ad/**
+
 logging:
   level:
     reactor.netty: INFO
