@@ -20,7 +20,7 @@ spring:
             - Path=/auth/**
 
         - id: user-service
-          uri: https://service-user-data.onrender.com
+          uri: https://service-user-qxpc.onrender.com
           predicates:
             - Path=/user/**
 
