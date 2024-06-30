@@ -25,22 +25,26 @@ spring:
               - OPTIONS
             allowedHeaders:
               - "*"
-            allowCredentials: true
       routes:
         - id: auth-service
           uri: https://service-authorization-b1jx.onrender.com
           predicates:
             - Path=/auth/**
-
+          filters:
+            - DedupeResponseHeader=Access-Control-Allow-Origin
         - id: user-service
           uri: https://service-user-qxpc.onrender.com
           predicates:
             - Path=/user/**
-
+          filters:
+            - DedupeResponseHeader=Access-Control-Allow-Origin
         - id: advertisement-service
           uri: https://service-advertisement.onrender.com
           predicates:
             - Path=/ad/**
+          filters:
+            - DedupeResponseHeader=Access-Control-Allow-Origin
+
 
 logging:
   level:
