@@ -13,6 +13,19 @@ spring:
         response-timeout: 360000
         ssl:
           useInsecureTrustManager: true
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
       routes:
         - id: auth-service
           uri: https://service-authorization-b1jx.onrender.com
