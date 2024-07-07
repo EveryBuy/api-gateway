@@ -39,7 +39,7 @@ spring:
           filters:
             - DedupeResponseHeader=Access-Control-Allow-Origin
         - id: advertisement-service
-          uri: https://service-advertisement.onrender.com
+          uri: https://service-advertisement-r8dt.onrender.com
           predicates:
             - Path=/ad/**
           filters:
