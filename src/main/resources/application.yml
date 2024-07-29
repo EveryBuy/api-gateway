@@ -44,7 +44,12 @@ spring:
             - Path=/ad/**
           filters:
             - DedupeResponseHeader=Access-Control-Allow-Origin
-
+        - id: chat-service
+          uri: https://service-chat-t47s.onrender.com
+          predicates:
+            - Path=/chat/**
+          filters:
+            - DedupeResponseHeader=Access-Control-Allow-Origin
 
 logging:
   level:
