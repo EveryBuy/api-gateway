@@ -32,6 +32,15 @@ spring:
             - Path=/auth/**
           filters:
             - DedupeResponseHeader=Access-Control-Allow-Origin
+            - name: Retry
+              args:
+                 retries: 3
+                 statuses: INTERNAL_SERVER_ERROR
+                 methods: GET,POST
+                 backoff:
+                   firstBackoff: 100ms
+                   maxBackoff: 300ms
+                   factor: 2
         - id: user-service
           uri: https://service-user-qxpc.onrender.com
           predicates:
