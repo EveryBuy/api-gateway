@@ -16,37 +16,37 @@ import org.springframework.http.MediaType;
 import ua.everybuy.errorhandling.ErrorResponse;
 import ua.everybuy.errorhandling.MessageResponse;
 
-@Component
-@RequiredArgsConstructor
-public class GlobalExceptionFilter implements GlobalFilter, Ordered {
-
-    private final ObjectMapper objectMapper;
-
-    @Override
-    public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-
-        return chain.filter(exchange).then(Mono.fromRunnable(() -> {
-            HttpStatusCode statusCode = exchange.getResponse().getStatusCode();
-
-            if (statusCode != null && statusCode.is5xxServerError()) {
-                ServerHttpResponse response = exchange.getResponse();
-                ErrorResponse responseBody = new ErrorResponse(statusCode.value(), new MessageResponse("SERVER_ERROR"));
-                byte[] responseBytes;
-                try {
-                    responseBytes = objectMapper.writeValueAsBytes(responseBody);
-                } catch (JsonProcessingException e) {
-                    responseBytes = "{}" .getBytes();
-                }
-                response.getHeaders().setContentType(MediaType.APPLICATION_JSON);
-                response.getHeaders().setContentLength(responseBytes.length);
-
-                response.writeWith(Mono.just(response.bufferFactory().wrap(responseBytes))).subscribe();
-            }
-        }));
-    }
-
-    @Override
-    public int getOrder() {
-        return 0;
-    }
-}
+//@Component
+//@RequiredArgsConstructor
+//public class GlobalExceptionFilter implements GlobalFilter, Ordered {
+//
+//    private final ObjectMapper objectMapper;
+//
+//    @Override
+//    public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+//
+//        return chain.filter(exchange).then(Mono.fromRunnable(() -> {
+//            HttpStatusCode statusCode = exchange.getResponse().getStatusCode();
+//
+//            if (statusCode != null && statusCode.is5xxServerError()) {
+//                ServerHttpResponse response = exchange.getResponse();
+//                ErrorResponse responseBody = new ErrorResponse(statusCode.value(), new MessageResponse("SERVER_ERROR"));
+//                byte[] responseBytes;
+//                try {
+//                    responseBytes = objectMapper.writeValueAsBytes(responseBody);
+//                } catch (JsonProcessingException e) {
+//                    responseBytes = "{}" .getBytes();
+//                }
+//                response.getHeaders().setContentType(MediaType.APPLICATION_JSON);
+//                response.getHeaders().setContentLength(responseBytes.length);
+//
+//                response.writeWith(Mono.just(response.bufferFactory().wrap(responseBytes))).subscribe();
+//            }
+//        }));
+//    }
+//
+//    @Override
+//    public int getOrder() {
+//        return 0;
+//    }
+//}
