@@ -14,9 +14,9 @@ import static org.springframework.web.reactive.function.server.ServerResponse.ok
 public class WakeUpConfig {
     @Bean
     public RouterFunction<ServerResponse> keepAlive() {
-        return route(GET("/wake-up"),
+        return route(GET("/keep-alive"),
                 request -> ok().contentType(MediaType.TEXT_PLAIN).bodyValue("I am alive!"))
-                .andRoute(POST("/wake-up"),
+                .andRoute(POST("/keep-alive"),
                         request -> request.bodyToMono(String.class)
                                 .flatMap(body -> ok().contentType(MediaType.TEXT_PLAIN).bodyValue("Received: " + body)));
     }
