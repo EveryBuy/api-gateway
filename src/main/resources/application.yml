@@ -50,16 +50,33 @@ spring:
         - id: advertisement-service
           uri: https://service-advertisement-r8dt.onrender.com
           predicates:
-            - Path=/ad/**
+            - Path=/product/**
           filters:
             - DedupeResponseHeader=Access-Control-Allow-Origin
+            - name: Retry
+              args:
+                retries: 3
+                statuses: INTERNAL_SERVER_ERROR
+                methods: GET,POST
+                backoff:
+                  firstBackoff: 100ms
+                  maxBackoff: 300ms
+                  factor: 2
         - id: chat-service
           uri: https://service-chat-t47s.onrender.com
           predicates:
             - Path=/chat/**
           filters:
             - DedupeResponseHeader=Access-Control-Allow-Origin
-
+            - name: Retry
+              args:
+                retries: 3
+                statuses: INTERNAL_SERVER_ERROR
+                methods: GET,POST
+                backoff:
+                  firstBackoff: 100ms
+                  maxBackoff: 300ms
+                  factor: 2
 logging:
   level:
     reactor.netty: INFO
