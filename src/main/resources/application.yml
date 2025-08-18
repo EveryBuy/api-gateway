@@ -10,11 +10,8 @@ spring:
           instances:
             advertisement-service:
               - uri: https://efficient-enthusiasm-production.up.railway.app
-                metadata:
-                  weight: 3
               - uri: https://service-advertisement-r8dt.onrender.com
-                metadata:
-                  weight: 1
+
       httpserver:
         wiretap: true
       httpclient:
