@@ -4,7 +4,17 @@ spring:
   application:
     name: api-gateway
   cloud:
-    gateway:
+    discovery:
+      client:
+        simple:
+          instances:
+            advertisement-service:
+              - uri: https://efficient-enthusiasm-production.up.railway.app
+                metadata:
+                  weight: 3
+              - uri: https://service-advertisement-r8dt.onrender.com
+                metadata:
+                  weight: 1
       httpserver:
         wiretap: true
       httpclient:
@@ -25,6 +35,7 @@ spring:
               - OPTIONS
             allowedHeaders:
               - "*"
+
       routes:
         - id: auth-service
           uri: https://service-authorization-b1jx.onrender.com
@@ -47,8 +58,9 @@ spring:
             - Path=/user/**
           filters:
             - DedupeResponseHeader=Access-Control-Allow-Origin
+
         - id: advertisement-service
-          uri: https://service-advertisement-r8dt.onrender.com
+          uri: lb://advertisement-service
           predicates:
             - Path=/product/**
           filters:
@@ -62,6 +74,7 @@ spring:
                   firstBackoff: 100ms
                   maxBackoff: 300ms
                   factor: 2
+
         - id: chat-service
           uri: https://service-chat-t47s.onrender.com
           predicates:
@@ -81,4 +94,12 @@ logging:
   level:
     reactor.netty: INFO
     org.springframework.cloud.gateway: TRACE
+
+auth:
+  service:
+    base-url: https://service-authorization-b1jx.onrender.com
+user:
+  service:
+    base-url: https://service-user-qxpc.onrender.com
+
 
