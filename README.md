@@ -14,11 +14,32 @@ https://app.swaggerhub.com/apis-docs/OlesiaSmahlii/EveryBuy/1.0#/
 
 The API Gateway currently routes requests to the following services:
 
-- **auth-service**: Authentication service hosted at `https://service-authorization-b1jx.onrender.com`
-  - Routes requests with path `/auth/**`
+- **auth-service**: 
+  - *Routes requests* with path `/auth/**`
+  - *Features:* JWT token generation; User authentication
+  
+- **user-service**: 
+  - *Routes* requests with path `/user/**`
+  - *Features:* User profile management
+  - 
+- **advertisement-service**: 
+  - *Routes* requests with path `/product/**`
+  - *Features:* Product listings
+  
+- **advertisement-service**: 
+  - *Routes* requests with path `/chat/**`
+  - *Features:* Messaging
 
-- **user-service**: User service hosted at `https://service-user-qxpc.onrender.com`
-  - Routes requests with path `/user/**`
+## Architecture Diagram
 
-- **advertisement-service**: Advertisement service hosted at `https://service-advertisement-r8dt.onrender.com`
-  - Routes requests with path `/ad/**`
+```mermaid
+graph TD
+    A[Client] --> B[API Gateway]
+    B --> C{Auth Service}
+    B --> D{User Service}
+    B --> E{Advertisement Service}
+    B --> F{Chat Service}
+    C -->|/auth/**| G[Auth Service]
+    D -->|/user/**| H[User Service]
+    E -->|/product/**| I[Advertisement Service]
+    F -->|/chat/**| J[Chat Service]
