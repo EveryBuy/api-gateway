@@ -4,18 +4,8 @@ spring:
   application:
     name: api-gateway
   cloud:
-    discovery:
-      client:
-        simple:
-          instances:
-            advertisement-service:
-              - uri: https://efficient-enthusiasm-production.up.railway.app
-              - uri: https://service-advertisement-r8dt.onrender.com
-
-      httpserver:
-        wiretap: true
+    gateway:
       httpclient:
-        wiretap: true
         connect-timeout: 360000
         response-timeout: 360000
         ssl:
@@ -32,7 +22,6 @@ spring:
               - OPTIONS
             allowedHeaders:
               - "*"
-
       routes:
         - id: auth-service
           uri: https://service-authorization-b1jx.onrender.com
@@ -42,13 +31,14 @@ spring:
             - DedupeResponseHeader=Access-Control-Allow-Origin
             - name: Retry
               args:
-                 retries: 3
-                 statuses: INTERNAL_SERVER_ERROR
-                 methods: GET,POST
-                 backoff:
-                   firstBackoff: 100ms
-                   maxBackoff: 300ms
-                   factor: 2
+                retries: 3
+                statuses: INTERNAL_SERVER_ERROR
+                methods: GET,POST
+                backoff:
+                  firstBackoff: 100ms
+                  maxBackoff: 300ms
+                  factor: 2
+
         - id: user-service
           uri: https://service-user-qxpc.onrender.com
           predicates:
@@ -87,6 +77,17 @@ spring:
                   firstBackoff: 100ms
                   maxBackoff: 300ms
                   factor: 2
+    discovery:
+      client:
+        simple:
+          instances:
+            advertisement-service:
+              - uri: https://efficient-enthusiasm-production.up.railway.app
+                metadata:
+                  weight: 3
+              - uri: https://service-advertisement-r8dt.onrender.com
+                metadata:
+                  weight: 1
 logging:
   level:
     reactor.netty: INFO
