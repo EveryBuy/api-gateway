@@ -26,7 +26,7 @@ The API Gateway currently routes requests to the following services:
   - *Routes* requests with path `/product/**`
   - *Features:* Product listings
   
-- **advertisement-service**: 
+- **chat-service**: 
   - *Routes* requests with path `/chat/**`
   - *Features:* Messaging
 
