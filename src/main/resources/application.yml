@@ -82,9 +82,9 @@ spring:
         simple:
           instances:
             advertisement-service:
-              - uri: https://efficient-enthusiasm-production.up.railway.app
-                metadata:
-                  weight: 3
+#              - uri: https://35.195.121.212
+#                metadata:
+#                  weight: 3
               - uri: https://service-advertisement-r8dt.onrender.com
                 metadata:
                   weight: 1
