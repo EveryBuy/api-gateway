@@ -85,6 +85,7 @@ spring:
               - uri: http://35.205.149.238
                 metadata:
                   weight: 3
+
               - uri: https://service-advertisement-r8dt.onrender.com
                 metadata:
                   weight: 1
