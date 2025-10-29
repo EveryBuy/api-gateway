@@ -82,7 +82,7 @@ spring:
         simple:
           instances:
             advertisement-service:
-              - uri: http://34.76.90.90:8080
+              - uri: http://34.77.168.126:8080
                 metadata:
                   weight: 3
 
