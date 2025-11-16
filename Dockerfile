@@ -8,7 +8,7 @@ COPY . .
 RUN chmod +x gradlew
 RUN ./gradlew build
 
-FROM openjdk:17-alpine
+FROM eclipse-temurin:17-jdk-alpine
 
 COPY --from=build /build/libs/api-gateway-0.0.1-SNAPSHOT.jar /app/api-gateway-0.0.1-SNAPSHOT.jar
 
