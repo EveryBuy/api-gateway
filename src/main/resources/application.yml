@@ -82,9 +82,9 @@ spring:
         simple:
           instances:
             advertisement-service:
-#              - uri: http://34.77.168.126:8080
-#                metadata:
-#                  weight: 3
+              - uri: http://34.77.168.126
+                metadata:
+                  weight: 3
 
               - uri: https://service-advertisement-r8dt.onrender.com
                 metadata:
