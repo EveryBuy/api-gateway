@@ -47,7 +47,7 @@ spring:
             - DedupeResponseHeader=Access-Control-Allow-Origin
 
         - id: advertisement-service
-          uri: lb://advertisement-service
+          uri: https://service-advertisement-r8dt.onrender.com
           predicates:
             - Path=/product/**
           filters:
@@ -77,18 +77,18 @@ spring:
                   firstBackoff: 100ms
                   maxBackoff: 300ms
                   factor: 2
-    discovery:
-      client:
-        simple:
-          instances:
-            advertisement-service:
+#    discovery:
+#      client:
+#        simple:
+#          instances:
+#            advertisement-service:
 #              - uri: http://34.77.168.126
 #                metadata:
 #                  weight: 3
-
-              - uri: https://service-advertisement-r8dt.onrender.com
-                metadata:
-                  weight: 1
+#
+#              - uri: https://service-advertisement-r8dt.onrender.com
+#                metadata:
+#                  weight: 1
 logging:
   level:
     reactor.netty: INFO
