@@ -1,15 +1,25 @@
-FROM ubuntu:20.04 AS build
+FROM eclipse-temurin:17-jdk-focal AS build
 
-RUN apt-get update
-RUN apt-get install -y openjdk-17-jdk
+WORKDIR /build
 
-COPY . .
+COPY gradlew .
+COPY gradle gradle
+COPY build.gradle .
+COPY settings.gradle .
 
 RUN chmod +x gradlew
-RUN ./gradlew build
+RUN ./gradlew dependencies --no-daemon
+
+COPY src src
+
+RUN ./gradlew build -x test --no-daemon
 
 FROM eclipse-temurin:17-jdk-alpine
 
-COPY --from=build /build/libs/api-gateway-0.0.1-SNAPSHOT.jar /app/api-gateway-0.0.1-SNAPSHOT.jar
+WORKDIR /app
 
-CMD ["java", "-jar", "app/api-gateway-0.0.1-SNAPSHOT.jar"]
+COPY --from=build /build/build/libs/*.jar app.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
