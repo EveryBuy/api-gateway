@@ -79,9 +79,9 @@ logging:
 
 auth:
   service:
-    base-url: ${AUTH_URL}
+    base-url: ${AUTH_URL:https://service-authorization-b1jx.onrender.com}
 user:
   service:
-    base-url: ${USER_URL}
+    base-url: ${USER_URL:https://service-user-qxpc.onrender.com}
 
 
