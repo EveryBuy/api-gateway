@@ -79,9 +79,9 @@ logging:
 
 auth:
   service:
-    base-url: ${AUTH_SERVICE}
+    base-url: ${AUTH_URL}
 user:
   service:
-    base-url: ${USER_SERVICE}
+    base-url: ${USER_URL}
 
 
