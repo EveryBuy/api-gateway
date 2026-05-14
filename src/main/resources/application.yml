@@ -19,7 +19,7 @@ spring:
               - "*"
       routes:
         - id: auth-service
-          uri: https://service-authorization-b1jx.onrender.com
+          uri: ${AUTH_SERVICE}
           predicates:
             - Path=/auth/**
           filters:
@@ -35,7 +35,7 @@ spring:
                   factor: 2
 
         - id: user-service
-          uri: https://service-user-qxpc.onrender.com
+          uri: ${USER_SERVICE}
           predicates:
             - Path=/user/**
           filters:
@@ -58,7 +58,7 @@ spring:
                   factor: 2
 
         - id: chat-service
-          uri: https://service-chat-t47s.onrender.com
+          uri: ${CHAT_SERVICE}
           predicates:
             - Path=/chat/**
           filters:
@@ -72,18 +72,6 @@ spring:
                   firstBackoff: 100ms
                   maxBackoff: 300ms
                   factor: 2
-#    discovery:
-#      client:
-#        simple:
-#          instances:
-#            advertisement-service:
-#              - uri: http://34.77.168.126
-#                metadata:
-#                  weight: 3
-#
-#              - uri: https://service-advertisement-r8dt.onrender.com
-#                metadata:
-#                  weight: 1
 logging:
   level:
     reactor.netty: INFO
@@ -91,9 +79,9 @@ logging:
 
 auth:
   service:
-    base-url: https://service-authorization-b1jx.onrender.com
+    base-url: ${AUTH_SERVICE}
 user:
   service:
-    base-url: https://service-user-qxpc.onrender.com
+    base-url: ${USER_SERVICE}
 
 
